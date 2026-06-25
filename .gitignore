@@ -1,5 +1,10 @@
-# PDFs (added locally for OCR parsing, never committed)
+# Source documents dropped in for OCR parsing — never committed
 *.pdf
+*.epub
+
+# Drop-zone for docs to parse with MistralOCR (keep the folder, ignore contents)
+bucket/*
+!bucket/.gitkeep
 
 # MistralOCR tooling — kept local, not part of the engine
 MistralOCR/
