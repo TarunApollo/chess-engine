@@ -1,0 +1,30 @@
+# PDFs (added locally for OCR parsing, never committed)
+*.pdf
+
+# MistralOCR tooling — kept local, not part of the engine
+MistralOCR/
+Archive.zip
+*.zip
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+
+# Build artifacts
+build/
+dist/
+*.o
+*.a
+*.out
