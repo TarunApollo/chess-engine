@@ -6,14 +6,31 @@ U64 knight_attack_vector(int square){
     U64 bitboard = 0ULL;
     U64 attacks = 0ULL;
     set_bit(bitboard , square);
-    if (bitboard & not_a_column) attacks |= (bitboard >> 17);
-    if (bitboard & not_a_column) attacks |= (bitboard << 15);
-    if (bitboard & not_ab_column) attacks |= (bitboard >> 10);
-    if (bitboard & not_ab_column) attacks |= (bitboard << 6);
-    if (bitboard & not_h_column) attacks |= (bitboard << 17);
-    if (bitboard & not_h_column) attacks |= (bitboard >> 15);
-    if (bitboard & not_gh_column) attacks |= (bitboard << 10);
-    if (bitboard & not_gh_column) attacks |= (bitboard >> 6);
+    // possible refactor : use compile time insta-struct that caputres direction of shift
+    // run a loop to iterate and return the attack vector.
+    const struct {
+        int offset;
+        U64 bitmask;
+        int direction;
+    } knight_moves[] = {
+        {17, not_h_column, 1},
+        {15, not_a_column, 1},
+        {10, not_gh_column, 1},
+        {6, not_ab_column, 1},
+        {17, not_a_column, -1},
+        {15, not_h_column, -1},
+        {10, not_ab_column, -1},
+        {6, not_gh_column, -1},
+    };
+    for(int i = 0 ; i < 8 ; i++){
+        if (bitboard & knight_moves[i].bitmask){
+            if (knight_moves[i].direction > 0){
+                attacks |= (bitboard << knight_moves[i].offset);
+            } else {
+                attacks |= (bitboard >> knight_moves[i].offset);
+            }
+        }
+    }
     return attacks;
 }
 
