@@ -6,7 +6,7 @@ U64 knight_attack_vector(int square){
     U64 bitboard = 0ULL;
     U64 attacks = 0ULL;
     set_bit(bitboard , square);
-    // possible refactor : use compile time insta-struct that caputres direction of shift
+    // possible refactor : use compile time insta-struct that captures shift and direction of shift
     // run a loop to iterate and return the attack vector.
     const struct {
         int offset;
