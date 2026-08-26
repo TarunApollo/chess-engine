@@ -1,7 +1,4 @@
 #include "../board_essentials.h"
-
-// edge cases : all four corners. along each end rank and and end file i guess.
-
 U64 king_attacks[64];
 
 U64 king_attack_vector(int square){
@@ -10,12 +7,6 @@ U64 king_attack_vector(int square){
     set_bit(bitboard , square);
     attacks |= bitboard << 8;
     attacks |= bitboard >> 8;
-    // if (bitboard & not_a_column) attacks |= bitboard << 7;
-    // if (bitboard & not_a_column) attacks |= bitboard >> 9;
-    // if (bitboard & not_h_column) attacks |= bitboard << 9;
-    // if (bitboard & not_h_column) attacks |= bitboard >> 7;
-    // if (bitboard & not_h_column) attacks |= bitboard << 1;
-    // if (bitboard & not_a_column) attacks |= bitboard >> 1;
     const struct{
         int offset;
         U64 bitmask;
@@ -48,5 +39,4 @@ void init_king_attacks(){
 
 int main(void){
     init_king_attacks();
-    print_bitboard(king_attacks[h4]);
 }
