@@ -8,14 +8,45 @@ U64 king_attack_vector(int square){
     U64 bitboard = 0ULL;
     U64 attacks = 0ULL;
     set_bit(bitboard , square);
-    /*
-    king lowk chill, but idk
-    lemme think
-    uhhhhhh
-    */
+    attacks |= bitboard << 8;
+    attacks |= bitboard >> 8;
+    // if (bitboard & not_a_column) attacks |= bitboard << 7;
+    // if (bitboard & not_a_column) attacks |= bitboard >> 9;
+    // if (bitboard & not_h_column) attacks |= bitboard << 9;
+    // if (bitboard & not_h_column) attacks |= bitboard >> 7;
+    // if (bitboard & not_h_column) attacks |= bitboard << 1;
+    // if (bitboard & not_a_column) attacks |= bitboard >> 1;
+    const struct{
+        int offset;
+        U64 bitmask;
+        int direction;
+    } king_moves[] = {
+        { 7 , not_a_column , -1},
+        { 9 , not_a_column , 1},
+        { 1 , not_a_column , 1},
+        { 7 , not_h_column , 1},
+        { 9 , not_h_column , -1},
+        { 1 , not_h_column , -1}
+    };
+    for (int moves = 0 ; moves < 6 ; moves++){
+        if (bitboard & king_moves[moves].bitmask){
+            if (king_moves[moves].direction < 0){
+                attacks |= (bitboard << king_moves[moves].offset);
+            } else {
+                attacks |= (bitboard >> king_moves[moves].offset);
+            }
+        }
+    }
+    return attacks;
 }
 
+void init_king_attacks(){
+    for (int square = 0 ; square < 64 ; square ++){
+        king_attacks[square] = king_attack_vector(square);
+    }
+}
 
 int main(void){
-    return 0;
+    init_king_attacks();
+    print_bitboard(king_attacks[h4]);
 }
