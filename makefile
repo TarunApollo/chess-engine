@@ -1,3 +1,3 @@
 all:
-	gcc -O3 src/king_attacks/bitboard.c -o src/king_attacks/bitboard -Wall -Wextra
-	./src/king_attacks/bitboard
+	gcc -O3 src/rook_attacks/bitboard.c -o src/rook_attacks/bitboard -Wall -Wextra
+	./src/rook_attacks/bitboard
