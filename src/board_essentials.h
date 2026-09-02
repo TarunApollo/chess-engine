@@ -67,5 +67,24 @@ static inline void print_bitboard(U64 bitboard){
     printf("    a b c d e f g h\n");
     printf("    Bitboard: %lluULL\n" , bitboard);
 }
+//TODO: optimise with 
+static inline int count_bits(U64 bitboard){
+    // int count = 0;
+    // while (bitboard) {
+    //     bitboard &= (bitboard - 1); subtracting 1 leads to bits flipping all the way until the set bit we are counting
+                                    // &ing keeps all else the same except for the bits that got flipped which become 0.
+    //     count++;
+    // }
+    // return count;
+    return __builtin_popcountll(bitboard);
+}
+
+static inline int lsb_index(U64 bitboard){
+    // if (!bitboard) return -1;
+    // U64 lsb = bitboard & -bitboard;
+    // return count_bits(bitboard);
+    return __builtin_ctzll(bitboard);
+}
+
 
 #endif
