@@ -1,4 +1,5 @@
-#include "../../board_essentials.h"
+#include "board_essentials.h"
+#include "bishop_attacks.h"
 
 U64 bishop_attacks_mask[64];
 
@@ -46,8 +47,4 @@ void init_bishop_attacks_mask(){
     for(int square = 0 ; square < 64 ; square ++){
         bishop_attacks_mask[square] = bishop_attack_mask(square);
     }
-}
-int main(void){
-    init_bishop_attacks_mask();
-    return 0;
 }

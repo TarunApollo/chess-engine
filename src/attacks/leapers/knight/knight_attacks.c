@@ -1,4 +1,5 @@
-#include "../../board_essentials.h"
+#include "board_essentials.h"
+#include "knight_attacks.h"
 
 U64 knight_attacks[64];
 
@@ -38,9 +39,4 @@ void init_knight_attacks(){
     for (int square = 0 ; square < 64 ; square++){
         knight_attacks[square] = knight_attack_vector(square);
     }
-}
-
-int main(void){
-    init_knight_attacks();
-    return 0;
 }

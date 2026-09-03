@@ -1,5 +1,8 @@
-#include "../../board_essentials.h"
-#include "../slider_helpers.h"
+#include "board_essentials.h"
+#include "rook_attacks.h"
+#include "slider_helpers.h"
+
+#include <stdio.h>
 
 U64 rook_attacks_mask[64];
 
@@ -46,8 +49,4 @@ void init_rook_attacks_mask(){
     for(int square = 0 ; square < 64 ; square ++){
         rook_attacks_mask[square] = rook_attack_mask(square);
     }
-}
-int main(void){
-    init_rook_attacks_mask();
-    return 0;
 }

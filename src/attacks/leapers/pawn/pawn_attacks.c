@@ -1,4 +1,5 @@
-#include "../../board_essentials.h"
+#include "board_essentials.h"
+#include "pawn_attacks.h"
 U64 pawn_attacks[2][64];
 
 U64 pawn_attack_vector(int square , int side){
@@ -21,11 +22,4 @@ void init_pawn_attacks(){
         pawn_attacks[white][square] = pawn_attack_vector(square, white);
         pawn_attacks[black][square] = pawn_attack_vector(square, black);
     }
-}
-
-//main driver.
-int main(void){
-    printf("Bitboard Chess\n");
-    init_pawn_attacks();
-    return 0;
 }
