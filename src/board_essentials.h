@@ -67,7 +67,7 @@ static inline void print_bitboard(U64 bitboard){
     printf("    a b c d e f g h\n");
     printf("    Bitboard: %lluULL\n" , bitboard);
 }
-//TODO: optimise with 
+
 static inline int count_bits(U64 bitboard){
     // int count = 0;
     // while (bitboard) {
