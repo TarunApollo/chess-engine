@@ -1,5 +1,3 @@
 all:
-	gcc -O3 src/bishop_attacks/bitboard.c -o src/bishop_attacks/bitboard -Wall -Wextra
-	gcc -O3 src/rook_attacks/bitboard.c -o src/rook_attacks/bitboard -Wall -Wextra
-	./src/bishop_attacks/bitboard
-	./src/rook_attacks/bitboard
+	gcc -O3 src/sliders_attacks/rook_attacks/bitboard.c src/sliders_attacks/slider_helpers.c -o src/sliders_attacks/rook_attacks/bitboard -Wall -Wextra
+	./src/sliders_attacks/rook_attacks/bitboard

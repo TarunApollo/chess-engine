@@ -1,4 +1,5 @@
 #include "../../board_essentials.h"
+#include "../slider_helpers.h"
 
 U64 rook_attacks_mask[64];
 
@@ -31,11 +32,11 @@ U64 rook_attack_vector(int square , U64 blocker){
         if ((1ULL << ((r * 8) + tf)) & blocker) break;
     }
     for (f = tf + 1 ; f <= 6 ; f++){ 
-        attacks |= (1ULL << ((tr * 8) + tf));
+        attacks |= (1ULL << ((tr * 8) + f));
         if ((1ULL << ((tr * 8) + f)) & blocker) break;
     }
     for (f = tf - 1 ; f >= 1 ; f-- ){ 
-        attacks |= (1ULL << ((tr * 8) + tf));
+        attacks |= (1ULL << ((tr * 8) + f));
         if ((1ULL << ((tr * 8) + f)) & blocker) break;
     }
     return attacks; 
