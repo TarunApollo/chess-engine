@@ -1,6 +1,5 @@
 #include "board_essentials.h"
 
-#include <stdio.h>
 
 const int rook_relevant_occupancy_counts[64] = {
     12, 11, 11, 11, 11, 11, 11, 12,

@@ -4,8 +4,8 @@
 #include "knight_attacks.h"
 #include "pawn_attacks.h"
 #include "rook_attacks.h"
+#include "slider_helpers.h"
 
-#include <stdio.h>
 
 int main(void){
     init_rook_attacks_mask();

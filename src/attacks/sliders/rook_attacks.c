@@ -1,8 +1,7 @@
 #include "board_essentials.h"
 #include "rook_attacks.h"
-#include "slider_helpers.h"
 
-#include <stdio.h>
+
 
 U64 rook_attacks_mask[64];
 
