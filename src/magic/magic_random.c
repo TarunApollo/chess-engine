@@ -14,7 +14,7 @@ static inline U64 spm64(){
     return z;
 }
 
-U64 magic_random_candidate(){
+U64 magic_random_candidate(void){
     return spm64() & spm64() & spm64();
 }
 
