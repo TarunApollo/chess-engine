@@ -5,6 +5,7 @@
 #include "pawn_attacks.h"
 #include "rook_attacks.h"
 #include "slider_helpers.h"
+#include "magic_random.h"
 
 
 int main(void){
