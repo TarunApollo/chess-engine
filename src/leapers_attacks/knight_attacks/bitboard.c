@@ -1,4 +1,4 @@
-#include "../board_essentials.h"
+#include "../../board_essentials.h"
 
 U64 knight_attacks[64];
 

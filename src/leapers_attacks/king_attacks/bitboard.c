@@ -1,4 +1,4 @@
-#include "../board_essentials.h"
+#include "../../board_essentials.h"
 U64 king_attacks[64];
 
 U64 king_attack_vector(int square){

@@ -33,3 +33,6 @@ dist/
 *.o
 *.a
 *.out
+
+# Reference repositories
+chess_programming/
