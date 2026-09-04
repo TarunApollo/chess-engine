@@ -5,6 +5,8 @@
 # Drop-zone for docs to parse with MistralOCR (keep the folder, ignore contents)
 bucket/*
 !bucket/.gitkeep
+docs/
+output/
 
 # MistralOCR tooling — kept local, not part of the engine
 MistralOCR/
