@@ -68,10 +68,6 @@ void init_attack_tables(void){
     init_king_attack_table();
     init_knight_attack_table();
     init_pawn_attack_table();
-    U64 unemp = 0ULL;
-    set_bit(unemp , d4);
-    set_bit(unemp , e3);
-    print_bitboard(bishop_attack_lookup(c5 , unemp));
 }
 
 U64 rook_attack_lookup(int square, U64 occupancy){
