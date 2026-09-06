@@ -5,7 +5,7 @@
 
 U64 rook_attacks_mask[64];
 
-// pre calculated
+// pre calculated relevant occupancy bits, that the magic system must take into account
 U64 rook_attack_mask(int square){
     U64 attacks = 0ULL;
     int r , f;
@@ -25,19 +25,19 @@ U64 rook_attack_vector(int square , U64 blocker){
     int r , f;
     int tr = square / 8;
     int tf = square % 8;
-    for (r = tr + 1 ; r <= 6 ; r++){ 
+    for (r = tr + 1 ; r <= 7 ; r++){ 
         attacks |= (1ULL << ((r * 8) + tf));
         if ((1ULL << ((r * 8) + tf)) & blocker) break;
     }
-    for (r = tr - 1 ; r >= 1 ; r-- ){ 
+    for (r = tr - 1 ; r >= 0 ; r-- ){ 
         attacks |= (1ULL << ((r * 8) + tf));
         if ((1ULL << ((r * 8) + tf)) & blocker) break;
     }
-    for (f = tf + 1 ; f <= 6 ; f++){ 
+    for (f = tf + 1 ; f <= 7 ; f++){ 
         attacks |= (1ULL << ((tr * 8) + f));
         if ((1ULL << ((tr * 8) + f)) & blocker) break;
     }
-    for (f = tf - 1 ; f >= 1 ; f-- ){ 
+    for (f = tf - 1 ; f >= 0 ; f-- ){ 
         attacks |= (1ULL << ((tr * 8) + f));
         if ((1ULL << ((tr * 8) + f)) & blocker) break;
     }

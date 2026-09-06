@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
+
 typedef uint64_t U64;
 
 

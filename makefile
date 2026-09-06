@@ -7,5 +7,7 @@ all:
 		src/attacks/leapers/king/king_attacks.c \
 		src/attacks/leapers/knight/knight_attacks.c \
 		src/attacks/leapers/pawn/pawn_attacks.c \
+		src/magic/magic_random.c \
+		src/magic/magic_search.c \
 		-o bin/chess_engine
 	./bin/chess_engine
