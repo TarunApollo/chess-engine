@@ -1,11 +1,8 @@
 #include "board_essentials.h"
 #include "bishop_attacks.h"
-#include "magic_search.h"
 #include "slider_helpers.h"
 
 U64 bishop_attacks_mask[64];
-U64 bishop_attacks[64][512];
-
 // pre calculated
 U64 bishop_attack_mask(int square){
     U64 attacks = 0ULL;
@@ -49,19 +46,5 @@ U64 bishop_attack_vector(int square , U64 blocker){
 void init_bishop_attacks_mask(){
     for(int square = 0 ; square < 64 ; square ++){
         bishop_attacks_mask[square] = bishop_attack_mask(square);
-    }
-}
-
-void init_bishop_attacks(){
-    init_bishop_attacks_mask();
-    for(int square = 0 ; square <= 63 ; square++){
-        U64 mask = bishop_attacks_mask[square];
-        int bits = bishop_relevant_occupancy_counts[square];
-        int occ_indices = 1 << bits;
-        for (int index = 0 ; index < occ_indices ; index++){
-            U64 occupancy = set_occupancy(index , bits , mask);
-            int magic_index = (int)((occupancy * bishop_magics[square]) >> (64 - bits));
-            bishop_attacks[square][magic_index] = bishop_attack_vector(square , occupancy);
-        }
     }
 }

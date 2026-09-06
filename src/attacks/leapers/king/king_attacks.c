@@ -1,7 +1,5 @@
 #include "board_essentials.h"
 #include "king_attacks.h"
-U64 king_attacks[64];
-
 U64 king_attack_vector(int square){
     U64 bitboard = 0ULL;
     U64 attacks = 0ULL;
@@ -30,10 +28,4 @@ U64 king_attack_vector(int square){
         }
     }
     return attacks;
-}
-
-void init_king_attacks(){
-    for (int square = 0 ; square < 64 ; square ++){
-        king_attacks[square] = king_attack_vector(square);
-    }
 }

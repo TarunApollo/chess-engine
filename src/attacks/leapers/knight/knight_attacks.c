@@ -1,8 +1,6 @@
 #include "board_essentials.h"
 #include "knight_attacks.h"
 
-U64 knight_attacks[64];
-
 U64 knight_attack_vector(int square){
     U64 bitboard = 0ULL;
     U64 attacks = 0ULL;
@@ -33,10 +31,4 @@ U64 knight_attack_vector(int square){
         }
     }
     return attacks;
-}
-
-void init_knight_attacks(){
-    for (int square = 0 ; square < 64 ; square++){
-        knight_attacks[square] = knight_attack_vector(square);
-    }
 }
