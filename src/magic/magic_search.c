@@ -138,6 +138,9 @@ const U64 bishop_magics[64] = {
     0x0040140404022821ULL
 };
 
+
+//vestigial function, but was pretty painful to go through so imma keep it here 
+
 U64 find_magic(int square , int relevant_bits , int is_bishop){
     U64 occupancies[4096] , attacks[4096] , used_attacks[4096];
     U64 attack_mask = is_bishop ? bishop_attack_mask(square) : rook_attack_mask(square);
@@ -175,6 +178,3 @@ U64 find_magic(int square , int relevant_bits , int is_bishop){
     return 0ULL;
 }
 
-
-
-//init magic numbers 
