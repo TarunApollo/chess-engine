@@ -9,6 +9,6 @@ U64 rook_attack_lookup(int square, U64 occupancy);
 U64 bishop_attack_lookup(int square, U64 occupancy);
 U64 knight_attack_lookup(int square);
 U64 king_attack_lookup(int square);
-U64 pawn_attack_lookup(int square, int side);
+U64 pawn_attack_lookup(int side, int square);
 
 #endif
