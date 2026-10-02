@@ -25,14 +25,14 @@ enum Squares{
     a8, b8, c8, d8, e8, f8, g8, h8 , no_sq
 };
 
-extern const int rook_relevant_occupancy_counts[64];
-extern const int bishop_relevant_occupancy_counts[64];
-
 
 enum Colour{
     white,
-    black
+    black,
+    both
 };
+
+
 
 // get/set/pop macros 
 #define get_bit(bitboard , square) ((bitboard) & (1ULL << square))

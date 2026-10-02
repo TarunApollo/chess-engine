@@ -3,6 +3,7 @@ all:
 		src/main.c src/board_essentials.c \
 		src/attacks/sliders/slider_helpers.c \
 		src/attacks/attack_tables.c \
+		src/position/position.c \
 		src/attacks/sliders/rook_attacks.c \
 		src/attacks/sliders/bishop_attacks.c \
 		src/attacks/leapers/king/king_attacks.c \
