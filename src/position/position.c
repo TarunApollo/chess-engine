@@ -2,9 +2,10 @@
 
 const char ascii_pieces[12] = {'P','N','B','R','Q','K','p','n','b','r','q','k'};
 
+//TODO: switch back colour codes after, this just looks nicer in the terminal. correct even.
 const char *unicode_pieces[12] = {
-    "♙", "♘", "♗", "♖", "♕", "♔",
-    "♟", "♞", "♝", "♜", "♛", "♚"
+    "♟", "♞", "♝", "♜", "♛", "♚",
+    "♙", "♘", "♗", "♖", "♕", "♔"
 };
 
 const int char_pieces[] = {
@@ -85,7 +86,7 @@ void print_position(U64 bitboards[12]){
                     piece_type = board_piece;
                 }
             }
-            printf("%c " , (piece_type == -1) ? '.' : ascii_pieces[piece_type]);
+            printf("%s " , (piece_type == -1) ? "." : unicode_pieces[piece_type]);
         }
         printf("\n");
     }
