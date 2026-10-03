@@ -1,5 +1,6 @@
 #include "board_essentials.h"
 
+
 void print_bitboard(U64 bitboard){
     for (int row = 7; row >= 0; row--){
         printf("%d   ", row + 1);
@@ -21,5 +22,6 @@ int count_bits(U64 bitboard){
 int lsb_index(U64 bitboard){
     return __builtin_ctzll(bitboard);
 }
+
 
 

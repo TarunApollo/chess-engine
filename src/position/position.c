@@ -1,6 +1,6 @@
 #include"position.h"
 
-const char ascii_pieces[13] = "PNBRQKpbnrqk";
+const char ascii_pieces[12] = {'P','N','B','R','Q','K','p','b','n','r','q','k'};
 
 const char *unicode_pieces[12] = {
     "♙", "♘", "♗", "♖", "♕", "♔",
@@ -74,6 +74,25 @@ static U64 set_pieces_on_rank(enum NumericPieceEncoding piece_code , U64 bitboar
     return bitboard;
 };
 
+void print_position(U64 bitboards[12]){
+    for (int row = 7; row >= 0; row--){
+        printf("%d   ", row + 1);
+        for (int column = 0; column < 8; column++){
+            int square = row * 8 + column;
+            int piece_type = -1;
+            for (int board_piece = P ; board_piece <= k ; board_piece++){
+                if (get_bit(bitboards[board_piece],square)){
+                    piece_type = board_piece;
+                }
+            }
+            printf("%c " , (piece_type == -1) ? '.' : ascii_pieces[piece_type]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    printf("    a b c d e f g h\n");
+}
+
 void init_position(Position * pos){
     *pos = (Position){0};
     for (int piece_code = 0 ; piece_code < 12 ; piece_code++){
@@ -93,5 +112,5 @@ void init_position(Position * pos){
     pos->enpassant_square = no_sq;
     pos->side_to_move = white;
     pos->castling_rights = wk | wq | bk | bq;
-    return;
+    print_position(pos->bitboards);
 }

@@ -13,7 +13,7 @@ enum CastlingRights{ no_castling = 0, wk = 1, wq = 2 , bk = 4 , bq = 8 };
 //encode pieces as characters
 enum NumericPieceEncoding{ P , N , B  , R , Q ,K  , p , n , b , r , q , k};
 
-extern const char ascii_pieces[13];
+extern const char ascii_pieces[12];
 
 extern const char *unicode_pieces[12];
 
@@ -30,5 +30,6 @@ typedef struct{
     enum CastlingRights castling_rights;
 }Position;
 
-void init_position(Position * pos);
+extern void print_position(U64 bitboards[12]);
+extern void init_position(Position * pos);
 #endif
