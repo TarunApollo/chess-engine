@@ -1,6 +1,6 @@
 #include"position.h"
 
-const char ascii_pieces[12] = {'P','N','B','R','Q','K','p','b','n','r','q','k'};
+const char ascii_pieces[12] = {'P','N','B','R','Q','K','p','n','b','r','q','k'};
 
 const char *unicode_pieces[12] = {
     "♙", "♘", "♗", "♖", "♕", "♔",
