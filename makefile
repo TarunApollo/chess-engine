@@ -4,6 +4,7 @@ all:
 		src/attacks/sliders/slider_helpers.c \
 		src/attacks/attack_tables.c \
 		src/position/position.c \
+		src/position/fen.c \
 		src/attacks/sliders/rook_attacks.c \
 		src/attacks/sliders/bishop_attacks.c \
 		src/attacks/leapers/king/king_attacks.c \

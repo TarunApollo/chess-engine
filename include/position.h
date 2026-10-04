@@ -19,6 +19,7 @@ extern const char *unicode_pieces[12];
 
 extern const int char_pieces[];
 
+extern const char * starting_position;
 //TODO: 50 move draw rule to be added, as a boolean atleast. maybe gonna track it.
 typedef struct{
 // one bitboard representation for each piece type (white pawn,black knight,etc)
@@ -28,8 +29,10 @@ typedef struct{
     enum Squares enpassant_square;
     enum Colour side_to_move;
     enum CastlingRights castling_rights;
+    int halfmove_clock;// for the 50 move rule.
+    int fullmove_counter;// total full moves made so far.
 }Position;
-
-extern void print_position(U64 bitboards[12]);
+extern int parse_fen(const char * fen,Position *pos);
+extern void print_position(Position * pos);
 extern void init_position(Position * pos);
 #endif

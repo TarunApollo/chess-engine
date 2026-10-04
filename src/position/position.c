@@ -19,63 +19,39 @@ const int char_pieces[] = {
     ['n'] = n,
     ['b'] = b,
     ['r'] = r,
+    ['k'] = k,
     ['q'] = q,
-    ['k'] = k
 };
 
-static U64 set_pieces_on_rank(enum NumericPieceEncoding piece_code , U64 bitboard){
-    switch(piece_code){
-        case P:
-            for(int square = 8 ; square < 16 ; square++){
-                set_bit(bitboard,square);
-            };
-            break;
-        case N:
-            set_bit(bitboard , b1);
-            set_bit(bitboard, g1);
-            break;
-        case B:
-            set_bit(bitboard , c1);
-            set_bit(bitboard , f1);
-            break;
-        case R:
-            set_bit(bitboard , a1);
-            set_bit(bitboard , h1);;
-            break;
-        case Q:
-            set_bit(bitboard , d1);
-            break;
-        case K:
-            set_bit(bitboard , e1);
-            break;
-        case p:
-            for(int square = 48 ; square < 56 ; square++){
-                set_bit(bitboard,square);
-            };
-            break;
-        case n:
-            set_bit(bitboard , b8);
-            set_bit(bitboard, g8);
-            break;
-        case b:
-            set_bit(bitboard , c8);
-            set_bit(bitboard, f8);
-            break;
-        case r:
-            set_bit(bitboard , a8);
-            set_bit(bitboard, h8);
-            break;
-        case q:
-            set_bit(bitboard ,d8);
-            break;
-        case k:
-            set_bit(bitboard, e8);
-            break;
+const char * starting_position = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+
+// save a position from a fen string into the position object.
+int parse_fen(const char * fen, Position * pos){
+    Position temp_pos = {0};
+    char buffer[strlen(fen) + 1];
+    temp_pos.side_to_move = white;
+    temp_pos.enpassant_square = no_sq;
+    temp_pos.castling_rights = 0;
+    strcpy(buffer,fen);
+    char * token = strtok(buffer , " ");
+    for (int row = 7; row >= 0; row--){
+            for (int column = 0; column < 8; column++){
+                int square = row * 8 + column;
+                int piece_type = -1;
+                for (int board_piece = P ; board_piece <= k ; board_piece++){
+                    if (get_bit(pos->bitboards[board_piece],square)){
+                        piece_type = board_piece;
+                        break;
+                    }
+                }
+
+            }
     }
-    return bitboard;
-};
+}
 
-void print_position(U64 bitboards[12]){
+void print_position(Position * pos){
+    U64 bitboards[12];
+    memcpy(bitboards , pos->bitboards , sizeof(bitboards));
     for (int row = 7; row >= 0; row--){
         printf("%d   ", row + 1);
         for (int column = 0; column < 8; column++){
@@ -84,6 +60,7 @@ void print_position(U64 bitboards[12]){
             for (int board_piece = P ; board_piece <= k ; board_piece++){
                 if (get_bit(bitboards[board_piece],square)){
                     piece_type = board_piece;
+                    break;
                 }
             }
             printf("%s " , (piece_type == -1) ? "." : unicode_pieces[piece_type]);
@@ -92,26 +69,18 @@ void print_position(U64 bitboards[12]){
     }
     printf("\n");
     printf("    a b c d e f g h\n");
+    printf("\n");
+    printf("    To play: %s\n" , (pos->side_to_move == white) ? "white" : "black");
+    printf("\n");
+    printf("    En passant: %s\n" , square_to_coordinates[pos->enpassant_square]);
+    printf("\n");
+    printf("    Who can castle?: %c%c%c%c\n",(pos->castling_rights & wk) ? 'K' : '-',
+                                             (pos->castling_rights & wq) ? 'Q' : '-',
+                                             (pos->castling_rights & bk) ? 'k' : '-',
+                                             (pos->castling_rights & bq) ? 'q' : '-');
 }
 
 void init_position(Position * pos){
-    *pos = (Position){0};
-    for (int piece_code = 0 ; piece_code < 12 ; piece_code++){
-        pos->bitboards[piece_code] = set_pieces_on_rank(piece_code , pos->bitboards[piece_code]);
-    }
-    U64 white_occs = 0ULL;
-    for(int white_piece_occupancy = 0 ; white_piece_occupancy < 6 ; white_piece_occupancy++){
-        white_occs |= pos->bitboards[white_piece_occupancy];
-    }
-    pos->occupancies[white] = white_occs;
-    U64 black_occs = 0ULL;
-    for(int black_piece_occupancy = 6 ; black_piece_occupancy < 12 ; black_piece_occupancy++){
-        black_occs |= pos->bitboards[black_piece_occupancy];
-    }
-    pos->occupancies[black] = black_occs;
-    pos->occupancies[both] = white_occs | black_occs;
-    pos->enpassant_square = no_sq;
-    pos->side_to_move = white;
-    pos->castling_rights = wk | wq | bk | bq;
-    print_position(pos->bitboards);
+    parse_fen(starting_position ,pos);
+    print_position(pos);
 }
